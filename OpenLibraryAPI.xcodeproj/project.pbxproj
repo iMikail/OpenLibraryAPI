@@ -12,6 +12,8 @@
 		A8D586DC29EFC3A200C43111 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D586DB29EFC3A200C43111 /* MainViewController.swift */; };
 		A8D586E129EFC3A500C43111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8D586E029EFC3A500C43111 /* Assets.xcassets */; };
 		A8D586E429EFC3A500C43111 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D586E229EFC3A500C43111 /* LaunchScreen.storyboard */; };
+		A8D586EF29EFC59B00C43111 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D586EE29EFC59B00C43111 /* SearchView.swift */; };
+		A8D586F129EFC5B300C43111 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D586F029EFC5B300C43111 /* SearchTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A8D586E029EFC3A500C43111 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8D586E329EFC3A500C43111 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8D586E529EFC3A500C43111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8D586EE29EFC59B00C43111 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		A8D586F029EFC5B300C43111 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +88,18 @@
 		A8D586ED29EFC4D700C43111 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A8D586F229EFC5BE00C43111 /* SearchView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A8D586F229EFC5BE00C43111 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				A8D586EE29EFC59B00C43111 /* SearchView.swift */,
+				A8D586F029EFC5B300C43111 /* SearchTextField.swift */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +172,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8D586F129EFC5B300C43111 /* SearchTextField.swift in Sources */,
+				A8D586EF29EFC59B00C43111 /* SearchView.swift in Sources */,
 				A8D586DC29EFC3A200C43111 /* MainViewController.swift in Sources */,
 				A8D586D829EFC3A200C43111 /* AppDelegate.swift in Sources */,
 				A8D586DA29EFC3A200C43111 /* SceneDelegate.swift in Sources */,
