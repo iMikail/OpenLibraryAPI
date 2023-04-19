@@ -15,6 +15,16 @@ class MainViewController: UIViewController {
     // MARK: - Views
     private lazy var searchView = SearchView()
     private lazy var loaderView = LoaderView(style: .large)
+    private lazy var noResultLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .gray
+        label.text = "Ничего не найдено."
+
+        return label
+    }()
     private lazy var booksTable: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +67,7 @@ class MainViewController: UIViewController {
     private func setupViews() {
         view.addSubview(booksTable)
         view.addSubview(loaderView)
+        view.addSubview(noResultLabel)
     }
 
     private func setupConstraints() {
@@ -70,6 +81,9 @@ class MainViewController: UIViewController {
 
         constraints.append(loaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor))
         constraints.append(loaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+
+        constraints.append(noResultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(noResultLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor))
 
         NSLayoutConstraint.activate(constraints)
     }
@@ -149,11 +163,14 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: SearchViewDelegate {
     func findInfo(forText text: String) {
         loaderView.setHidden(false)
+        noResultLabel.isHidden = true
         dataFetcher.getSearchingResult(forRequest: text) { [weak self] response in
             guard let self = self else { return }
-            self.books = response.docs
-            self.loaderView.setHidden(true)
-            self.booksTable.reloadData()
+
+            books = response.docs
+            loaderView.setHidden(true)
+            booksTable.reloadData()
+            noResultLabel.isHidden = !books.isEmpty
         }
     }
 }

@@ -101,9 +101,9 @@
 		A8D586EC29EFC4C900C43111 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A8D586F829EFCC1400C43111 /* LibraryAPI.swift */,
 				A8D5870829F0293400C43111 /* DetailResponse.swift */,
 				A8D586FA29EFCC9A00C43111 /* SearchResponse.swift */,
+				A8D586F829EFCC1400C43111 /* LibraryAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

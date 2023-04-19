@@ -81,7 +81,6 @@ final class DetailViewController: UIViewController {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(horizontalStack)
         stackView.addArrangedSubview(descriptionTitle)
-        stackView.addArrangedSubview(descriptionLabel)
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 15
@@ -117,30 +116,35 @@ final class DetailViewController: UIViewController {
 
     private func setupViews() {
         view.addSubview(fotoImageView)
-        scrollView.addSubview(verticalStack)
+        view.addSubview(verticalStack)
+        scrollView.addSubview(descriptionLabel)
         view.addSubview(scrollView)
     }
 
     private func setupConstraints() {
         var constrs = [NSLayoutConstraint]()
-
+        let widthMultiplier: CGFloat = 0.9
         constrs.append(fotoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10))
         constrs.append(fotoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor))
         constrs.append(fotoImageView.heightAnchor.constraint(lessThanOrEqualToConstant: imageViewHeight))
         constrs.append(fotoImageView.widthAnchor.constraint(lessThanOrEqualToConstant: imageViewWidth))
 
-        constrs.append(scrollView.topAnchor.constraint(equalTo: fotoImageView.bottomAnchor, constant: 10))
-        constrs.append(scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9))
-        constrs.append(scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor))
-        constrs.append(scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20))
-
         let topStackAnchor = verticalStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30)
         topStackAnchor.priority = .defaultLow
         constrs.append(topStackAnchor)
-        constrs.append(verticalStack.topAnchor.constraint(equalTo: scrollView.topAnchor))
-        constrs.append(verticalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9))
+        constrs.append(verticalStack.topAnchor.constraint(equalTo: fotoImageView.bottomAnchor, constant: 10))
+        constrs.append(verticalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: widthMultiplier))
         constrs.append(verticalStack.centerXAnchor.constraint(equalTo: view.centerXAnchor))
-        constrs.append(verticalStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
+
+        constrs.append(scrollView.topAnchor.constraint(equalTo: verticalStack.bottomAnchor, constant: 10))
+        constrs.append(scrollView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: widthMultiplier))
+        constrs.append(scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constrs.append(scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20))
+
+        constrs.append(descriptionLabel.topAnchor.constraint(equalTo: scrollView.topAnchor))
+        constrs.append(descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: widthMultiplier))
+        constrs.append(descriptionLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
+        constrs.append(descriptionLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
 
         NSLayoutConstraint.activate(constrs)
     }
