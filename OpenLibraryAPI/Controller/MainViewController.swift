@@ -8,6 +8,9 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    // MARK: - Constants/variables
+    private var books = [Doc]()
+    private var dataFetcher = NetworkDataFetcher()
 
     // MARK: - Views
     private lazy var searchView = SearchView()
@@ -32,6 +35,8 @@ class MainViewController: UIViewController {
 // MARK: - SearchViewDelegate
 extension MainViewController: SearchViewDelegate {
     func findInfo(forText text: String) {
-        print(text)
+        dataFetcher.getSearchingResult(forRequest: text) { [weak self] response in
+            print(response.docs)
+        }
     }
 }
