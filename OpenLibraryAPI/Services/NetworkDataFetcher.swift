@@ -26,14 +26,24 @@ final class NetworkDataFetcher {
         }
     }
 
-    func getBooks(forKey key: String) {
+    func getBooks(forKey key: String, completion: @escaping (DetailResponse?, DetailResponseEx?) -> Void) {
         let path = "\(key).json"
         let parameters: [String: String] = ["details": "true"]
 
-        networkService.fetchData(path: path, host: LibraryAPI.libraryHost, parameters: parameters) { jsonData in
-            print(jsonData)
-        }
+        networkService.fetchData(path: path, host: LibraryAPI.libraryHost, parameters: parameters) { [weak self] jsonData in
+            guard let self = self else { return }
 
+            if let detailResponse = self.decodeJson(type: DetailResponse.self, data: jsonData) {
+                if detailResponse.description != nil {
+                    completion(detailResponse, nil)
+                    return
+                }
+            }
+            if let detailResponseEx = self.decodeJson(type: DetailResponseEx.self, data: jsonData) {
+                completion(nil, detailResponseEx)
+                return
+            }
+        }
     }
 
     func getImageUrl(forCoverId coverId: Int?, size: ImageSize) -> String? {

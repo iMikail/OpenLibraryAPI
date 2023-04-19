@@ -93,7 +93,42 @@ extension MainViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedBook = books[indexPath.row]
+        guard let key = selectedBook.key else { return }
 
+        var ratings = ""
+        if let currentRating = selectedBook.ratingAverage {
+            ratings = String(format: "%.2f", currentRating)
+        } else {
+            ratings = "-"
+        }
+        let image = dataFetcher.getImageUrl(forCoverId: selectedBook.coverI, size: .medium)
+        var description: String? = ""
+        var firstPublishDate = ""
+        if let year = selectedBook.firstPublishYear {
+            firstPublishDate = "\(year)г."
+        }
+
+        dataFetcher.getBooks(forKey: key) { [weak self] (detailResponse, detailResponseEx) in
+            guard let self = self else { return }
+
+            if let detailResponse = detailResponse {
+                description = detailResponse.description
+                if let firstDate = detailResponse.firstPublishDate {
+                    firstPublishDate = firstDate
+                }
+            } else if let detailResponseEx = detailResponseEx {
+                description = detailResponseEx.description?.value
+                if let firstDate = detailResponseEx.firstPublishDate {
+                    firstPublishDate = firstDate
+                }
+            }
+            let book = BookDetail(image: image, title: selectedBook.title, description: description,
+                                  firstPublishDate: firstPublishDate, ratings: ratings)
+            let detailVC = DetailViewController()
+            detailVC.book = book
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

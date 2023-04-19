@@ -20,6 +20,8 @@
 		A8D586FB29EFCC9A00C43111 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D586FA29EFCC9A00C43111 /* SearchResponse.swift */; };
 		A8D5870329EFDBFE00C43111 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870229EFDBFE00C43111 /* BookTableViewCell.swift */; };
 		A8D5870529EFDC5800C43111 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870429EFDC5800C43111 /* WebImageView.swift */; };
+		A8D5870729F028F800C43111 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870629F028F700C43111 /* DetailViewController.swift */; };
+		A8D5870929F0293400C43111 /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870829F0293400C43111 /* DetailResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		A8D586FA29EFCC9A00C43111 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		A8D5870229EFDBFE00C43111 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		A8D5870429EFDC5800C43111 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		A8D5870629F028F700C43111 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A8D5870829F0293400C43111 /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				A8D586DB29EFC3A200C43111 /* MainViewController.swift */,
+				A8D5870629F028F700C43111 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				A8D586F829EFCC1400C43111 /* LibraryAPI.swift */,
+				A8D5870829F0293400C43111 /* DetailResponse.swift */,
 				A8D586FA29EFCC9A00C43111 /* SearchResponse.swift */,
 			);
 			path = Model;
@@ -201,12 +207,14 @@
 				A8D586F729EFCB9A00C43111 /* NetworkDataFetcher.swift in Sources */,
 				A8D586F129EFC5B300C43111 /* SearchTextField.swift in Sources */,
 				A8D586F929EFCC1400C43111 /* LibraryAPI.swift in Sources */,
+				A8D5870729F028F800C43111 /* DetailViewController.swift in Sources */,
 				A8D586EF29EFC59B00C43111 /* SearchView.swift in Sources */,
 				A8D5870529EFDC5800C43111 /* WebImageView.swift in Sources */,
 				A8D586DC29EFC3A200C43111 /* MainViewController.swift in Sources */,
 				A8D586D829EFC3A200C43111 /* AppDelegate.swift in Sources */,
 				A8D586F529EFCB8800C43111 /* NetworkService.swift in Sources */,
 				A8D586DA29EFC3A200C43111 /* SceneDelegate.swift in Sources */,
+				A8D5870929F0293400C43111 /* DetailResponse.swift in Sources */,
 				A8D5870329EFDBFE00C43111 /* BookTableViewCell.swift in Sources */,
 				A8D586FB29EFCC9A00C43111 /* SearchResponse.swift in Sources */,
 			);
