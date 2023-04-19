@@ -35,7 +35,7 @@ final class BookTableViewCell: UITableViewCell {
     private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17.0)
+        label.font = UIFont.systemFont(ofSize: 16.0)
         label.textAlignment = .left
 
         return label
@@ -73,7 +73,7 @@ final class BookTableViewCell: UITableViewCell {
         fotoImageView.setImage(from: image)
         titleLabel.text = doc.title
         if let year = doc.firstPublishYear {
-            subTitleLabel.text = String(year)
+            subTitleLabel.text = "Первая публикация: \(year)"
         }
     }
 

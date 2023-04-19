@@ -90,8 +90,6 @@ extension MainViewController: UITableViewDataSource {
 
         return cell
     }
-
-
 }
 
 // MARK: - UITableViewDelegate
@@ -100,6 +98,19 @@ extension MainViewController: UITableViewDelegate {
         let selectedBook = books[indexPath.row]
         guard let key = selectedBook.key else { return }
 
+        dataFetcher.getBooks(forKey: key) { [weak self] (detailResponse, detailResponseEx) in
+            guard let self = self else { return }
+
+            let book = createDetailBook(selectedBook: selectedBook, detailResponse: detailResponse,
+                                        detailResponseEx: detailResponseEx)
+            let detailVC = DetailViewController()
+            detailVC.book = book
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+
+    private func createDetailBook(selectedBook: Doc, detailResponse: DetailResponse?,
+                                  detailResponseEx: DetailResponseEx?) -> BookDetail {
         var ratings = ""
         if let currentRating = selectedBook.ratingAverage {
             ratings = String(format: "%.2f", currentRating)
@@ -113,26 +124,21 @@ extension MainViewController: UITableViewDelegate {
             firstPublishDate = "\(year)г."
         }
 
-        dataFetcher.getBooks(forKey: key) { [weak self] (detailResponse, detailResponseEx) in
-            guard let self = self else { return }
-
-            if let detailResponse = detailResponse {
-                description = detailResponse.description
-                if let firstDate = detailResponse.firstPublishDate {
-                    firstPublishDate = firstDate
-                }
-            } else if let detailResponseEx = detailResponseEx {
-                description = detailResponseEx.description?.value
-                if let firstDate = detailResponseEx.firstPublishDate {
-                    firstPublishDate = firstDate
-                }
+        if let detailResponse = detailResponse {
+            description = detailResponse.description
+            if let firstDate = detailResponse.firstPublishDate {
+                firstPublishDate = firstDate
             }
-            let book = BookDetail(image: image, title: selectedBook.title, description: description,
-                                  firstPublishDate: firstPublishDate, ratings: ratings)
-            let detailVC = DetailViewController()
-            detailVC.book = book
-            self.navigationController?.pushViewController(detailVC, animated: true)
+        } else if let detailResponseEx = detailResponseEx {
+            description = detailResponseEx.description?.value
+            if let firstDate = detailResponseEx.firstPublishDate {
+                firstPublishDate = firstDate
+            }
         }
+        let bookDetail = BookDetail(image: image, title: selectedBook.title, description: description,
+                              firstPublishDate: firstPublishDate, ratings: ratings)
+
+        return bookDetail
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
