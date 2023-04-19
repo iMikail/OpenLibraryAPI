@@ -21,10 +21,12 @@ class MainViewController: UIViewController {
         label.isHidden = true
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .gray
-        label.text = "Ничего не найдено."
+        label.numberOfLines = 2
+        label.textAlignment = .center
 
         return label
     }()
+
     private lazy var booksTable: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,10 +36,21 @@ class MainViewController: UIViewController {
 
         return tableView
     }()
+
+    private lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: ImageKeys.openLibrary.rawValue)
+
+        return imageView
+    }()
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        navigationItem.backButtonTitle = "Назад"
         setupTopBar()
         setupViews()
         setupConstraints()
@@ -50,6 +63,25 @@ class MainViewController: UIViewController {
     }
 
     // MARK: - Functions
+    private func hideViews(_ isHidden: Bool) {
+        if isHidden {
+            noResultLabel.isHidden = isHidden
+            logoImageView.isHidden = isHidden
+            booksTable.isHidden = isHidden
+            loaderView.setHidden(!isHidden)
+        } else {
+            let isEmpty = books.isEmpty
+            noResultLabel.isHidden = !isEmpty
+            logoImageView.isHidden = !isEmpty
+            booksTable.isHidden = isEmpty
+            loaderView.setHidden(!isHidden)
+        }
+    }
+
+    private func setResultTitle(isError: Bool) {
+        noResultLabel.text = isError ? "Ошибка сети.\nПопробуйте снова." : "Ничего не найдено."
+    }
+
     private func setupTopBar() {
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.hidesBarsOnSwipe = true
@@ -66,6 +98,7 @@ class MainViewController: UIViewController {
 
     private func setupViews() {
         view.addSubview(booksTable)
+        view.addSubview(logoImageView)
         view.addSubview(loaderView)
         view.addSubview(noResultLabel)
     }
@@ -83,7 +116,11 @@ class MainViewController: UIViewController {
         constraints.append(loaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor))
 
         constraints.append(noResultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor))
-        constraints.append(noResultLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        constraints.append(noResultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15))
+
+        constraints.append(logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        constraints.append(logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9))
 
         NSLayoutConstraint.activate(constraints)
     }
@@ -159,18 +196,26 @@ extension MainViewController: UITableViewDelegate {
         90
     }
 }
+
 // MARK: - SearchViewDelegate
 extension MainViewController: SearchViewDelegate {
     func findInfo(forText text: String) {
-        loaderView.setHidden(false)
-        noResultLabel.isHidden = true
-        dataFetcher.getSearchingResult(forRequest: text) { [weak self] response in
+        hideViews(true)
+        dataFetcher.getSearchingResult(forRequest: text) { [weak self] (response, error) in
             guard let self = self else { return }
 
+            if error != nil {
+                books = []
+                setResultTitle(isError: true)
+                hideViews(false)
+                return
+            }
+
+            guard let response = response else { return }
             books = response.docs
-            loaderView.setHidden(true)
+            setResultTitle(isError: false)
+            hideViews(false)
             booksTable.reloadData()
-            noResultLabel.isHidden = !books.isEmpty
         }
     }
 }

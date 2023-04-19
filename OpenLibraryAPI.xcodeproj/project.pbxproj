@@ -23,6 +23,7 @@
 		A8D5870729F028F800C43111 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870629F028F700C43111 /* DetailViewController.swift */; };
 		A8D5870929F0293400C43111 /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870829F0293400C43111 /* DetailResponse.swift */; };
 		A8D5870B29F02A7E00C43111 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870A29F02A7E00C43111 /* LoaderView.swift */; };
+		A8D5870D29F039A700C43111 /* ImageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870C29F039A700C43111 /* ImageKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		A8D5870629F028F700C43111 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A8D5870829F0293400C43111 /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
 		A8D5870A29F02A7E00C43111 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		A8D5870C29F039A700C43111 /* ImageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				A8D586EB29EFC4B700C43111 /* Controller */,
 				A8D586F329EFCB6000C43111 /* Services */,
 				A8D586E029EFC3A500C43111 /* Assets.xcassets */,
+				A8D5870C29F039A700C43111 /* ImageKeys.swift */,
 				A8D586E229EFC3A500C43111 /* LaunchScreen.storyboard */,
 				A8D586E529EFC3A500C43111 /* Info.plist */,
 			);
@@ -217,6 +220,7 @@
 				A8D586DC29EFC3A200C43111 /* MainViewController.swift in Sources */,
 				A8D586D829EFC3A200C43111 /* AppDelegate.swift in Sources */,
 				A8D586F529EFCB8800C43111 /* NetworkService.swift in Sources */,
+				A8D5870D29F039A700C43111 /* ImageKeys.swift in Sources */,
 				A8D586DA29EFC3A200C43111 /* SceneDelegate.swift in Sources */,
 				A8D5870929F0293400C43111 /* DetailResponse.swift in Sources */,
 				A8D5870329EFDBFE00C43111 /* BookTableViewCell.swift in Sources */,

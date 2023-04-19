@@ -11,7 +11,7 @@ final class NetworkService {
     func fetchData(path: String,
                    host: String,
                    parameters: [String: String],
-                   completion: @escaping (Data) -> Void) {
+                   completion: @escaping (Data?, Error?) -> Void) {
         guard let url = self.url(from: path, host: host, parameters: parameters) else {
             print("Url invalid")
             return
@@ -21,11 +21,14 @@ final class NetworkService {
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let data = data {
                 DispatchQueue.main.async {
-                    completion(data)
+                    completion(data, nil)
                     print("jsonData fetched")
                 }
             } else if let error = error {
-                print(error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                    print(error)
+                }
             }
         }.resume()
     }
