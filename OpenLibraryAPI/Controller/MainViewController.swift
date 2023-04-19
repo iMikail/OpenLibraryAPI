@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
 
     // MARK: - Views
     private lazy var searchView = SearchView()
+    private lazy var loaderView = LoaderView(style: .large)
     private lazy var booksTable: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +56,7 @@ class MainViewController: UIViewController {
 
     private func setupViews() {
         view.addSubview(booksTable)
-
+        view.addSubview(loaderView)
     }
 
     private func setupConstraints() {
@@ -66,6 +67,9 @@ class MainViewController: UIViewController {
         constraints.append(booksTable.trailingAnchor.constraint(equalTo: view.trailingAnchor))
         constraints.append(booksTable.bottomAnchor.constraint(equalTo: view.bottomAnchor))
         constraints.append(booksTable.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+
+        constraints.append(loaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(loaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor))
 
         NSLayoutConstraint.activate(constraints)
     }
@@ -138,9 +142,11 @@ extension MainViewController: UITableViewDelegate {
 // MARK: - SearchViewDelegate
 extension MainViewController: SearchViewDelegate {
     func findInfo(forText text: String) {
+        loaderView.setHidden(false)
         dataFetcher.getSearchingResult(forRequest: text) { [weak self] response in
             guard let self = self else { return }
             self.books = response.docs
+            self.loaderView.setHidden(true)
             self.booksTable.reloadData()
         }
     }

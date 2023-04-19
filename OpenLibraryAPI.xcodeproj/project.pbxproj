@@ -22,6 +22,7 @@
 		A8D5870529EFDC5800C43111 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870429EFDC5800C43111 /* WebImageView.swift */; };
 		A8D5870729F028F800C43111 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870629F028F700C43111 /* DetailViewController.swift */; };
 		A8D5870929F0293400C43111 /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870829F0293400C43111 /* DetailResponse.swift */; };
+		A8D5870B29F02A7E00C43111 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D5870A29F02A7E00C43111 /* LoaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A8D5870429EFDC5800C43111 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		A8D5870629F028F700C43111 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A8D5870829F0293400C43111 /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
+		A8D5870A29F02A7E00C43111 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				A8D5870229EFDBFE00C43111 /* BookTableViewCell.swift */,
 				A8D5870429EFDC5800C43111 /* WebImageView.swift */,
+				A8D5870A29F02A7E00C43111 /* LoaderView.swift */,
 				A8D586F229EFC5BE00C43111 /* SearchView */,
 			);
 			path = View;
@@ -207,6 +210,7 @@
 				A8D586F729EFCB9A00C43111 /* NetworkDataFetcher.swift in Sources */,
 				A8D586F129EFC5B300C43111 /* SearchTextField.swift in Sources */,
 				A8D586F929EFCC1400C43111 /* LibraryAPI.swift in Sources */,
+				A8D5870B29F02A7E00C43111 /* LoaderView.swift in Sources */,
 				A8D5870729F028F800C43111 /* DetailViewController.swift in Sources */,
 				A8D586EF29EFC59B00C43111 /* SearchView.swift in Sources */,
 				A8D5870529EFDC5800C43111 /* WebImageView.swift in Sources */,
